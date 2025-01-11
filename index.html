@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Analog clock</title>
+</head>
+<link rel="stylesheet" href="clock.css" type="text/css">
+<body>
+    
+
+<div class="clock">
+
+    <div class="hand hour"></div>
+    <div class="hand minute"></div>
+    <div class="hand second"></div>
+
+    <div class="numbers number1">1</div>
+    <div class="numbers number2">2</div>
+    <div class="numbers number3">3</div>
+    <div class="numbers number4">4</div>
+    <div class="numbers number5">5</div>
+    <div class="numbers number6">6</div>
+    <div class="numbers number7">7</div>
+    <div class="numbers number8">8</div>
+    <div class="numbers number9">9</div>
+    <div class="numbers number10">10</div>
+    <div class="numbers number11">11</div>
+    <div class="numbers number12">12</div>
+
+
+   <div class="digital-clock">
+
+    <div class="watch">
+        <h5>10:30:05 <sup>PM</sup></h5>
+    </div>
+
+   </div>
+
+</div>
+
+<script>
+    const hourHand = document.querySelector('.hour'),
+        minuteHand = document.querySelector('.minute')  ,
+        secondHand = document.querySelector('.second') ;
+
+        setInterval(clock, 1000)
+
+        function clock(){
+          let date = new Date();
+          let secondRatio  = date.getSeconds()/60;
+          let minuteRatio = (secondRatio + date.getMinutes())/60;
+          let hourRatio = (minuteRatio +date.getHours())/12
+          
+          // console.log(hourRatio, minuteRatio, secondRatio)
+          rotateHands(hourHand, hourRatio)
+          rotateHands(minuteHand, minuteRatio)
+          rotateHands(secondHand, secondRatio)
+        }
+       function rotateHands(element, ratio)
+       {
+          element.style.setProperty('--rotation', ratio*360 )
+       }
+       clock()
+  </script>
+
+
+</body>
+</html>
